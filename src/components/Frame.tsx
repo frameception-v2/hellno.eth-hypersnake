@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useCallback, useState } from "react";
+import type { FrameMetadata } from "~/lib/frame-types";
 import sdk, {
   AddFrame,
   SignIn as SignInCore,
@@ -25,9 +26,10 @@ import { PROJECT_TITLE } from "~/lib/constants";
 
 export default function Frame() {
   useEffect(() => {
+    // Configure viewport for mobile touch optimization
     const meta = document.createElement('meta');
     meta.name = 'viewport';
-    meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+    meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no';
     document.head.appendChild(meta);
     
     return () => {
