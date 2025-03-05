@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useCallback, useState } from "react";
+import GameCanvas from "./GameCanvas";
 import type { FrameMetadata } from "~/lib/frame-types";
 import sdk, {
   AddFrame,
@@ -133,15 +134,7 @@ export default function Frame() {
         paddingRight: context?.client.safeAreaInsets?.right ?? 0,
       }}
     >
-      <canvas
-        id="gameCanvas"
-        className="w-full h-full"
-        style={{
-          touchAction: "none",
-          background: "#000",
-          imageRendering: "crisp-edges"
-        }}
-      />
+      <GameCanvas />
     </div>
   );
 }
