@@ -5,7 +5,10 @@ import { useEffect, useRef, useCallback } from 'react';
 export default function GameCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const glRef = useRef<WebGL2RenderingContext | null>(null);
+  const ctx2dRef = useRef<CanvasRenderingContext2D | null>(null);
   const offscreenRef = useRef<HTMLCanvasElement>();
+  const animationFrameRef = useRef<number>();
 
   // Setup resize observer and double buffering
   useEffect(() => {
