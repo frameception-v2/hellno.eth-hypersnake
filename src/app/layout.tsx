@@ -35,6 +35,12 @@ export const metadata: Metadata = {
       "en-US": "/en-US",
     },
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
 };
 
 export default async function RootLayout({
@@ -44,14 +50,14 @@ export default async function RootLayout({
 }>) {
   const session = await getSession();
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className="h-full">
+      <body className="h-full bg-black text-[#00ff88]">
         <ThemeProviderClient>
           <Providers session={session}>
             <SidebarProvider>
               {/* <AppSidebar /> */}
               <SidebarInset>
-                <header className="flex h-14 shrink-0 items-center gap-2">
+                <header className="flex h-14 shrink-0 items-center gap-2 p-4 border-b-2 border-[#00ff88]/50">
                   <div className="flex flex-1 items-center gap-2 px-3">
                     {/* 
                     <SidebarTrigger />
@@ -60,9 +66,7 @@ export default async function RootLayout({
                     <Breadcrumb>
                       <BreadcrumbList>
                         <BreadcrumbItem>
-                          <BreadcrumbPage className="ml-2 line-clamp-1">
-                            {PROJECT_TITLE}
-                          </BreadcrumbPage>
+                          <h1 className="text-2xl font-bold glow-text">{PROJECT_TITLE}</h1>
                         </BreadcrumbItem>
                       </BreadcrumbList>
                     </Breadcrumb>
@@ -72,7 +76,11 @@ export default async function RootLayout({
                     <NavActions />
                   </div>
                 </header>
-                <div className="flex flex-1 flex-col gap-4 px-4 py-10">
+                <div className="flex flex-1 flex-col gap-4 px-4 py-10 relative">
+                  <div className="absolute inset-0 pointer-events-none" style={{
+                    background: `radial-gradient(circle at center, transparent 0%, #00ff8820 100%)`,
+                    mixBlendMode: 'screen'
+                  }} />
                   {children}
                   {/* <div className="mx-auto h-24 w-full max-w-3xl rounded-xl bg-neutral-100/50 dark:bg-neutral-800/50" />
                 <div className="mx-auto h-full w-full max-w-3xl rounded-xl bg-neutral-100/50 dark:bg-neutral-800/50" /> 
